@@ -1,4 +1,4 @@
-# basic-python-project-template
+# Fast API benchmark service
 Template for a standard python project using github's CI/CD and devcontainers (VS code)
 
 ## About the project
