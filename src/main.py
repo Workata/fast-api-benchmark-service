@@ -1,15 +1,10 @@
-from typing import Union, Dict, Any
+from typing import Dict
 
 from fastapi import FastAPI
 
 app = FastAPI()
 
 
-@app.get("/")
+@app.get("/api/hello")
 def read_root() -> Dict[str, str]:
     return {"Hello": "World"}
-
-
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: Union[str, None] = None) -> Dict[str, Any]:
-    return {"item_id": item_id, "q": q}
