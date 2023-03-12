@@ -82,3 +82,25 @@ python3 -m pytest ./src/tests/
 ```sh
 . ./scripts/run_checks.sh
 ```
+
+
+```
+docker build --progress=plain -t fast-api-benchmark-image .
+--no-cache
+
+tag -> ???
+docker tag fast-api-benchmark-image localhost:8000/fast-api-benchmark-image
+```
+
+```
+docker run -p 8000:8000 fast-api-benchmark-image
+-d detached mode (in the background)
+-p port mapping
+
+docker exec -it container-id bash
+
+
+push image
+http://richard.to/programming/hello-world-fast-api-kubenetes.html
+
+```
