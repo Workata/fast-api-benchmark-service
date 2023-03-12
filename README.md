@@ -101,6 +101,7 @@ docker exec -it container-id bash
 
 
 push image
+eval $(minikube docker-env)
 http://richard.to/programming/hello-world-fast-api-kubenetes.html
 
 ```
