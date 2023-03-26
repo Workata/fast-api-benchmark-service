@@ -1,7 +1,7 @@
 {
 	"workspaceFolder": "/workspace",
 	"dockerComposeFile": "docker-compose.devcontainer.build.yml",
-	"service": "app",
+	"service": "fast-api-benchmark",
 	"customizations": {
 	  "vscode": {
 		"settings": {
