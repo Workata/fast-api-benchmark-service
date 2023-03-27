@@ -11,14 +11,17 @@
 			"ms-python.python",
 			"ms-python.vscode-pylance",
 			"ms-python.black-formatter",
+			"ms-python.isort",
+
 			"aaron-bond.better-comments",
 			"mechatroner.rainbow-csv",
+			"redhat.vscode-yaml",
+
 			"eamodio.gitlens",
 			"ms-toolsai.jupyter",
 			"ms-mssql.mssql",
 			"ms-azuretools.vscode-docker",
 			"esbenp.prettier-vscode",
-			"redhat.vscode-yaml",
 			"yzhang.markdown-all-in-one"
 		]
 	  }
