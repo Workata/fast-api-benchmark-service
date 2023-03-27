@@ -20,11 +20,14 @@ services:
     image: postgres:15.2-alpine
     restart: always
     environment:
-      - PGHOST=${POSTGRES_HOST:-localhost}
-      - PGPORT=${POSTGRES_PORT:-5432}
-      - PGDATABASE=${POSTGRES_DB_NAME:-fast_api_service_db}
-      - PGUSER=${POSTGRES_USER:-user}
-      - PGPASSWORD=${POSTGRES_PASSWORD:-pass}
+      - POSTGRES_USER=${POSTGRES_USER:-user}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-pass}
+      - POSTGRES_DB=${POSTGRES_DB_NAME:-fast_api_service_db}    # doesnt work -> 'postgres' instead (done on first try)
+      # - PGHOST=${POSTGRES_HOST:-localhost}
+      # - PGPORT=${POSTGRES_PORT:-5432}
+      # - PGDATABASE=${POSTGRES_DB_NAME:-fast_api_service_db}
+      # - PGUSER=${POSTGRES_USER:-user}
+      # - PGPASSWORD=${POSTGRES_PASSWORD:-pass}
     ports:
       - '5432:5432'
     volumes:
