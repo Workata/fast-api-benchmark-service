@@ -1,8 +1,8 @@
 from sqlalchemy import Column, Integer, String
-from .database import Base
+from .database import BaseModel
 
 
-class Item(Base):
+class Item(BaseModel):
     __tablename__ = "items"
 
     id = Column(Integer, primary_key=True, index=True)

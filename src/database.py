@@ -1,6 +1,8 @@
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+from typing import Iterator  # Generator
+from sqlalchemy.orm import Session
 
 # SQLALCHEMY_DATABASE_URL = "sqlite:///./sql_app.db"
 SQLALCHEMY_DATABASE_URL = "postgresql://user:pass@db/postgres"  # fast_api_service_db
@@ -8,11 +10,11 @@ SQLALCHEMY_DATABASE_URL = "postgresql://user:pass@db/postgres"  # fast_api_servi
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-Base = declarative_base()
+BaseModel = declarative_base()
 
 
 # Dependency
-def get_db() -> sessionmaker:
+def get_db() -> Iterator[Session]:
     db = SessionLocal()
     try:
         yield db

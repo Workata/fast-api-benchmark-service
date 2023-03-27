@@ -2,10 +2,10 @@ from typing import Dict
 
 from fastapi import FastAPI
 
-from . import models, api, models
+from . import api, models
 from .database import engine
 
-models.Base.metadata.create_all(bind=engine)
+models.BaseModel.metadata.create_all(bind=engine)  # type: ignore
 
 app = FastAPI()
 
