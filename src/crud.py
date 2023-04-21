@@ -33,7 +33,7 @@ def update_item(db: Session, item_id: int, item_data: schemas.ItemUpdate) -> Opt
     item = db.query(models.Item).filter(models.Item.id == item_id).first()
     if item is None:
         return None
-    item_dict = item_data.dict(exclude_unset=True)  # type: ignore
+    item_dict = item_data.dict(exclude_unset=True)
     for key, value in item_dict.items():
         setattr(item, key, value)
     db.add(item)

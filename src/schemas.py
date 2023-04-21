@@ -11,7 +11,7 @@ class ItemCreate(ItemBase):
     pass
 
 
-class ItemUpdate:
+class ItemUpdate(BaseModel):
     title: Optional[str]
     description: Optional[str]
 
