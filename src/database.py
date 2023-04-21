@@ -1,19 +1,20 @@
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-from typing import Iterator  # Generator
+from typing import Iterator
 from sqlalchemy.orm import Session
+from .config import get_settings
 
-# SQLALCHEMY_DATABASE_URL = "sqlite:///./sql_app.db"
-SQLALCHEMY_DATABASE_URL = "postgresql://user:pass@db/postgres"  # fast_api_service_db
 
-engine = create_engine(SQLALCHEMY_DATABASE_URL)
+settings = get_settings()
+DB_URI = f"{settings.db_engine}://{settings.db_user}:{settings.db_password}@{settings.db_host}/{settings.db_name}"
+
+engine = create_engine(DB_URI)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 BaseModel = declarative_base()
 
 
-# Dependency
 def get_db() -> Iterator[Session]:
     db = SessionLocal()
     try:
