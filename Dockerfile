@@ -11,8 +11,8 @@ RUN pip install --upgrade pip
 # * for deploy use only base requirements
 RUN pip3 install -r requirements/base.txt
 
-COPY src/ .
+COPY src/ ./src/
 
 # * expose port and run the app
 EXPOSE 8000
-CMD ["uvicorn", "main:app", "--port=8000", "--host", "0.0.0.0"]
+CMD ["uvicorn", "src.main:app", "--port=8000", "--host", "0.0.0.0"]

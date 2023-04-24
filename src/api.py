@@ -1,10 +1,11 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from .models import Item
-from typing import List
+from typing import List, Dict, Any
 
 from . import crud, schemas
 from .database import get_db
+from .utils import JsonLoader
 
 
 router = APIRouter(prefix="/api", tags=["items"])
@@ -43,3 +44,9 @@ def update_item(item_id: int, item: schemas.ItemUpdate, db: Session = Depends(ge
     if updated_item is None:
         raise HTTPException(status_code=404, detail="Item not found")
     return updated_item
+
+
+@router.get("/report")
+def read_report() -> Dict[Any, Any]:
+    report = JsonLoader.load(file_path="./src/data/health_report.json")
+    return {"users": report}
