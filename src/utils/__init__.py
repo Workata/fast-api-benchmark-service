@@ -1,2 +1,1 @@
-from .yaml_reader import YamlReader
-from .logger import Logger
+from .json_loader import JsonLoader
