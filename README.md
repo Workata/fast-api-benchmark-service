@@ -86,6 +86,11 @@ python3 -m pytest ./src/tests/
 
 ```
 docker build --progress=plain -t fast-api-benchmark-image .
+
+minikube image load fast-api-benchmark-image:latest
+docker push fast-api-benchmark-image:latest
+
+
 --no-cache
 
 tag -> ???

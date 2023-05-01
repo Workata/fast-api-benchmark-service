@@ -16,6 +16,10 @@ class ItemUpdate(BaseModel):
     description: Optional[str]
 
 
-class Item(ItemBase):
+class Item(BaseModel):
+    id: int
+    title: str
+    description: str | None = None
+
     class Config:
         orm_mode = True
