@@ -1,15 +1,34 @@
-name: basic
+name: checks
 
 on: [push]
 
 jobs:
-  Build:
+  checks:
     runs-on: ubuntu-latest
+
+    services:
+      # service that will set up test db
+      postgres:
+        image: postgres:15.2-alpine
+        env:
+          POSTGRES_USER: test_user
+          POSTGRES_PASSWORD: test_pass
+          POSTGRES_DB: fast_api_service_test_db
+
+        # set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
     steps:
     - uses: actions/checkout@v2
 
-    - name: Create env file from example env
-      run: mv ./.env.example ./.env
+    - name: Create env file from test env
+      run: mv ./.env.test ./.env
 
     - name: Move Dockerfile from devcontainer
       run: mv ./.devcontainer/Dockerfile ./Dockerfile

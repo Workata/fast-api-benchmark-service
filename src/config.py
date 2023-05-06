@@ -2,12 +2,21 @@ from pydantic import BaseSettings
 
 
 class Settings(BaseSettings):
+    environment: str
+
     db_engine: str
     db_user: str
     db_password: str
     db_host: str
     db_port: str
     db_name: str
+
+    test_db_engine: str
+    test_db_user: str
+    test_db_password: str
+    test_db_host: str
+    test_db_port: str
+    test_db_name: str
 
     class Config:
         env_file = ".env"

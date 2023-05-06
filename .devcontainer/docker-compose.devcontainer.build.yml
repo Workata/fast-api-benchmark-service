@@ -28,6 +28,16 @@ services:
     volumes:
       - db:/var/lib/postgresql/data
 
+  test-db:
+    image: postgres:15.2-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=test_user
+      - POSTGRES_PASSWORD=test_pass
+      - POSTGRES_DB=fast_api_service_test_db
+    ports:
+      - '5433:5432'
+
   pg-admin:
     image: dpage/pgadmin4
     restart: always
