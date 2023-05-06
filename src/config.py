@@ -11,6 +11,13 @@ class Settings(BaseSettings):
     db_port: str
     db_name: str
 
+    test_db_engine: str
+    test_db_user: str
+    test_db_password: str
+    test_db_host: str
+    test_db_port: str
+    test_db_name: str
+
     class Config:
         env_file = ".env"
         env_file_encoding = "utf-8"

@@ -5,10 +5,14 @@ from fastapi.testclient import TestClient
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, Session
 
-from ..database import BaseModel, get_db
+from ..database import BaseModel, get_db, settings
 from ..main import app
 
-TEST_DB_URI = "postgresql://test_user:test_pass@localhost:5432/fast_api_service_test_db"
+
+TEST_DB_URI = (
+    f"{settings.test_db_engine}://{settings.test_db_user}:"
+    f"{settings.test_db_password}@{settings.test_db_host}/{settings.test_db_name}"
+)
 
 engine = create_engine(TEST_DB_URI)
 TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
