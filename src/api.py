@@ -36,6 +36,7 @@ def delete_item(item_id: int, db: Session = Depends(get_db)) -> None:
     item = crud.delete_item(db, item_id=item_id)
     if item is None:
         raise HTTPException(status_code=404, detail="Item not found")
+    return None
 
 
 @router.patch("/items/{item_id}", response_model=schemas.Item, status_code=HTTP_200_OK)

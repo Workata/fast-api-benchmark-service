@@ -2,6 +2,8 @@ from pydantic import BaseSettings
 
 
 class Settings(BaseSettings):
+    environment: str
+
     db_engine: str
     db_user: str
     db_password: str
