@@ -1,4 +1,4 @@
-from typing import Any, Iterator
+from typing import Iterator
 
 import pytest
 from fastapi.testclient import TestClient
@@ -18,8 +18,8 @@ engine = create_engine(TEST_DB_URI)
 TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 
-@pytest.fixture()
-def session() -> Iterator[Session]:
+@pytest.fixture
+def db() -> Iterator[Session]:
 
     BaseModel.metadata.drop_all(bind=engine)  # type: ignore
     BaseModel.metadata.create_all(bind=engine)  # type: ignore
@@ -32,13 +32,13 @@ def session() -> Iterator[Session]:
         db.close()
 
 
-@pytest.fixture()
-def client(session: Any) -> Iterator[TestClient]:
+@pytest.fixture
+def client(db: Session) -> Iterator[TestClient]:
     def override_get_db() -> Iterator[Session]:
         try:
-            yield session
+            yield db
         finally:
-            session.close()
+            db.close()
 
     app.dependency_overrides[get_db] = override_get_db
     yield TestClient(app)
