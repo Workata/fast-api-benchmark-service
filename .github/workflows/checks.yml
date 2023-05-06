@@ -3,12 +3,12 @@ name: checks
 on: [push]
 
 jobs:
-  checks-job:
+  checks:
     runs-on: ubuntu-latest
 
     services:
       # service that will set up test db
-      postgres:
+      test-db:
         image: postgres:15.2-alpine
         env:
           POSTGRES_USER: test_user
