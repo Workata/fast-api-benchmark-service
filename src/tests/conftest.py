@@ -8,7 +8,7 @@ from sqlalchemy.orm import sessionmaker, Session
 from ..database import BaseModel, get_db
 from ..main import app
 
-TEST_DB_URI = "postgresql://test_user:test_pass@test-db:5432/fast_api_service_test_db"
+TEST_DB_URI = "postgresql://test_user:test_pass@localhost:5432/fast_api_service_test_db"
 
 engine = create_engine(TEST_DB_URI)
 TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
