@@ -1,4 +1,5 @@
 from pydantic import BaseSettings
+from typing import Optional
 
 
 class Settings(BaseSettings):
@@ -11,12 +12,13 @@ class Settings(BaseSettings):
     db_port: str
     db_name: str
 
-    test_db_engine: str
-    test_db_user: str
-    test_db_password: str
-    test_db_host: str
-    test_db_port: str
-    test_db_name: str
+    # * optional settings cause test db is not needed for deploy
+    test_db_engine: Optional[str]
+    test_db_user: Optional[str]
+    test_db_password: Optional[str]
+    test_db_host: Optional[str]
+    test_db_port: Optional[str]
+    test_db_name: Optional[str]
 
     class Config:
         env_file = ".env"
